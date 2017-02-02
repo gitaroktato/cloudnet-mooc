@@ -130,7 +130,7 @@ class BandwidthMonitor(app_manager.RyuApp):
 
         totalDropped = 0
         for stat in body:
-	    print str(stat)
+	    # print str(stat)
             totalDropped += stat.tx_dropped
             totalDropped += stat.rx_dropped
         self.bwstats.addDroppedPktStat(name, totalDropped)
@@ -146,15 +146,15 @@ class BandwidthMonitor(app_manager.RyuApp):
 	rx_bytes = 0
 	port_no = 0
         for stat in body:
-		print str(stat)
+		# print str(stat)
 		tx_bytes = stat.tx_bytes
 		rx_bytes = stat.rx_bytes
 		port_no = stat.port_no
 		if name in self.topo.edgeSwitches:
-			print name + " is edge switch with port " + str(port_no)
+			# print name + " is edge switch with port " + str(port_no)
 			if port_no in self.topo.ports[name]:
 				connected_to = self.topo.ports[name][port_no]
-				print "Connection to " + connected_to
+				# print "Connection to " + connected_to
 				if connected_to[0] == "h":
 					# Is host			
 					self.bwstats.addHostBwStat(connected_to, tx_bytes, rx_bytes)
